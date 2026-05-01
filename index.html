@@ -5,7 +5,10 @@
   <title>FitGB Festival</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -14,7 +17,7 @@
 
 <!-- NAVBAR -->
 <header>
-  <div>
+  <div class="logo">
     <h2>FitGB Festival</h2>
     <p>Promoting active lifestyles & wellbeing</p>
   </div>
@@ -22,7 +25,7 @@
   <nav>
     <a href="#home">Home</a>
     <a href="#events">Events</a>
-    Register
+    <a href="javascript:void(0)" class="register-btn" onclick="openForm()">Register</a>
   </nav>
 </header>
 
@@ -32,10 +35,10 @@
     <h1>Empowering Communities Through Sport and Wellbeing</h1>
     <p>
       Join us at the University of Greenwich for a day of sport,
-      mental wellbeing and inclusive community connection.
+      mental wellbeing and community connection.
     </p>
 
-    <div class="social">
+    <div class="social-icons">
       <i class="fab fa-facebook"></i>
       <i class="fab fa-instagram"></i>
       <i class="fab fa-youtube"></i>
@@ -50,8 +53,8 @@
 <section class="dark fade">
   <h2>Fostering Health and Connection</h2>
   <p>
-    FitGB creates accessible sport and wellbeing experiences,
-    bridging health gaps in underserved communities.
+    FitGB delivers inclusive sport and wellbeing experiences
+    for diverse communities across London.
   </p>
 </section>
 
@@ -61,40 +64,40 @@
 
   <div class="cards">
     <div class="card">
-      <img src="assets/football.jpg">
+      <img src="assets/football.jpg" alt="Football activity">
       <h3>Sports Competitions</h3>
-      <p>Football, athletics and team challenges</p>
+      <p>Football, athletics and team games.</p>
     </div>
 
     <div class="card">
-      <img src="assets/yoga.jpg">
+      <img src="assets/yoga.jpg" alt="Yoga session">
       <h3>Wellness Workshops</h3>
-      <p>Yoga, mindfulness and fitness sessions</p>
+      <p>Yoga, mindfulness and fitness sessions.</p>
     </div>
 
     <div class="card">
-      <img src="assets/music.jpg">
-      <h3>Student-led Activities</h3>
-      <p>Creative entertainment and performances</p>
+      <img src="assets/music.jpg" alt="Student activity">
+      <h3>Student‑led Activities</h3>
+      <p>Creative performances and workshops.</p>
     </div>
 
     <div class="card">
-      <img src="assets/food.jpg">
+      <img src="assets/food.jpg" alt="Food stalls">
       <h3>Local Food Stalls</h3>
-      <p>Healthy food promoting community culture</p>
+      <p>Healthy food and community culture.</p>
     </div>
   </div>
 </section>
 
 <!-- CAMPUS -->
 <section class="campus fade">
-  <img src="assets/campus.jpg">
+  <img src="assets/campus.jpg" alt="University campus">
 
   <div>
     <h2>University of Greenwich Campus</h2>
     <p>
-      A safe, accessible and well‑connected environment,
-      perfect for inclusive community events.
+      A safe, accessible, and well‑connected environment
+      for inclusive community events.
     </p>
   </div>
 </section>
@@ -102,7 +105,7 @@
 <!-- CTA -->
 <section class="cta fade">
   <h2>Join the Movement</h2>
-  <p>Register your interest and be part of FitGB.</p>
+  <p>Register now and be part of the FitGB Festival.</p>
   <button onclick="openForm()">Register Your Interest</button>
 </section>
 
@@ -113,8 +116,7 @@
 
     <h2>Event Registration</h2>
 
-    <form id="registrationForm">
-
+    <form onsubmit="submitForm(event)">
       <label>Full Name*</label>
       <input type="text" required>
 
@@ -134,42 +136,13 @@
       <input type="tel">
 
       <label>Activities*</label>
-      <div class="checkbox">
-        <label>Football</label>
-        <label>Fitness</label>
-        <label>Yoga</label>
-        <label>Recreational Games</label>
-        <label>Health Talks</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox"> Football</label>
+        <label><input type="checkbox"> Fitness</label>
+        <label><input type="checkbox"> Yoga</label>
+        <label><input type="checkbox"> Games</label>
+        <label><input type="checkbox"> Health Talks</label>
       </div>
-
-      <label>Participated before?*</label>
-      <select required>
-        <option>Yes</option>
-        <option>No</option>
-        <option>Maybe</option>
-      </select>
-
-      <label>Medical / Accessibility Requirements</label>
-      <textarea></textarea>
-
-      <label>Require special assistance?</label>
-      <select>
-        <option>Yes</option>
-        <option>No</option>
-        <option>Maybe</option>
-      </select>
-
-      <label>How did you hear about the event?*</label>
-      <select required>
-        <option>Social Media</option>
-        <option>Friends / Family</option>
-        <option>School / University</option>
-        <option>Posters / Flyers</option>
-        <option>Other</option>
-      </select>
-
-      <label>Satisfaction Level*</label>
-      <input type="range" min="1" max="5">
 
       <label>
         <input type="checkbox" required>
@@ -181,15 +154,29 @@
   </div>
 </div>
 
+<!-- JAVASCRIPT -->
 <script>
-function openForm(){ document.getElementById("formModal").style.display="block"; }
-function closeForm(){ document.getElementById("formModal").style.display="none"; }
-
-document.getElementById("registrationForm").onsubmit=e=>{
+function openForm() {
+  document.getElementById("formModal").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("formModal").style.display = "none";
+}
+function submitForm(e) {
   e.preventDefault();
   alert("Registration submitted successfully!");
   closeForm();
-};
+}
 
-const items=document.querySelectorAll(".fade");
-window.addEventListener("scroll",()=>{
+const sections = document.querySelectorAll(".fade");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
